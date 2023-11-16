@@ -25,7 +25,7 @@ Add your token to the .env like so:
 ```TOKEN = "yourtoken" ``` where you replace ```yourtoken```with the actual token you get from OpenRouteService.
 
 
-Add a "jwt-secret" to your .env file, it could be any string preferrably 256 characters and will look like this:
+Add a "jwt-secret" to your .env file, it could be any string and can look like this:
 
 ```JWT_SECRET = "5d9e0b327c674d279771aed90ad876165d9e0b327c674d279771aed90ad87616"``` This is also the secret used for the example data that is currently in the ./bike-routes/ directory
 
