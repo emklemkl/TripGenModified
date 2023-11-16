@@ -202,7 +202,8 @@ const tripGenerator = {
                     route++;
                     counter.user += 1;
                 } catch (error) {
-                    console.error(error, "Bad response from OpenRouteService, will redo 1 route")
+                    console.error(error, "Bad response from OpenRouteService, exiting with status code 1")
+                    process.exit(1);
                 }
 
 
@@ -219,10 +220,10 @@ const tripGenerator = {
             fs.writeFileSync(`./bike-routes/${bike}.json`, JSON.stringify(bikeObj, null, 4));
             fs.appendFileSync("./bike-routes/bike.csv", `"${bike}","${JSON.stringify(initial)}"\r\n`);
             counter.bike += 1;
+            fs.writeFileSync(`./counter.json`, JSON.stringify(counter, null, 4));
         }
         // Update the number in the bike_counter file, in order to not use
         // same "bike ids" next time
-        fs.writeFileSync(`./counter.json`, JSON.stringify(counter, null, 4));
     }
 }
 

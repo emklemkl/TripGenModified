@@ -1,0 +1,161 @@
+{
+    "city": "1",
+    "initialStart": [
+        18.116171982540966,
+        59.33444384062423
+    ],
+    "trips": [
+        {
+            "user": {
+                "id": 19,
+                "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTksInJvbGUiOiJ1c2VyIiwiaWF0IjoxNzAwMTUzODAwLCJleHAiOjE3MzE2ODk4MDB9.vKWnO8l439uRE2kI8hRZbvAmx3Ynz9I5u8KSGBmuw3M"
+            },
+            "coords": [
+                [
+                    18.11562,
+                    59.33431
+                ],
+                [
+                    18.11529,
+                    59.33465
+                ],
+                [
+                    18.11519,
+                    59.3348
+                ],
+                [
+                    18.11487,
+                    59.33514
+                ],
+                [
+                    18.11445,
+                    59.33555
+                ],
+                [
+                    18.11412,
+                    59.33586
+                ],
+                [
+                    18.11378,
+                    59.33629
+                ],
+                [
+                    18.11333,
+                    59.33674
+                ],
+                [
+                    18.11362,
+                    59.3368
+                ],
+                [
+                    18.11466,
+                    59.3371
+                ],
+                [
+                    18.11556,
+                    59.33734
+                ],
+                [
+                    18.11822,
+                    59.33621
+                ],
+                [
+                    18.11879,
+                    59.33596
+                ]
+            ]
+        },
+        {
+            "user": {
+                "id": 20,
+                "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MjAsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNzAwMTUzODAxLCJleHAiOjE3MzE2ODk4MDF9.Pm-4ThMT7wwXlC24UAlz0cMH1QMk2xdob5JBUwe6M8o"
+            },
+            "coords": [
+                [
+                    18.11879,
+                    59.33596
+                ],
+                [
+                    18.11822,
+                    59.33621
+                ],
+                [
+                    18.11884,
+                    59.33584
+                ],
+                [
+                    18.11901,
+                    59.33557
+                ],
+                [
+                    18.11938,
+                    59.33478
+                ],
+                [
+                    18.11953,
+                    59.33348
+                ],
+                [
+                    18.11955,
+                    59.33331
+                ],
+                [
+                    18.11962,
+                    59.3333
+                ]
+            ]
+        },
+        {
+            "user": {
+                "id": 21,
+                "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MjEsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNzAwMTUzODAxLCJleHAiOjE3MzE2ODk4MDF9.QqfGeZJ8mnqWHimeQVM_qlfyzjDdhcswko9Njj5BL-M"
+            },
+            "coords": [
+                [
+                    18.11962,
+                    59.3333
+                ],
+                [
+                    18.11955,
+                    59.33331
+                ],
+                [
+                    18.11953,
+                    59.33348
+                ],
+                [
+                    18.11938,
+                    59.33478
+                ],
+                [
+                    18.11901,
+                    59.33557
+                ],
+                [
+                    18.11884,
+                    59.33584
+                ],
+                [
+                    18.11822,
+                    59.33621
+                ],
+                [
+                    18.12067,
+                    59.33512
+                ],
+                [
+                    18.12154,
+                    59.33558
+                ],
+                [
+                    18.12112,
+                    59.33619
+                ],
+                [
+                    18.12108,
+                    59.33622
+                ]
+            ]
+        }
+    ]
+}
