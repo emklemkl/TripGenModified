@@ -2,7 +2,6 @@ const randomPointsOnPolygon = require('random-points-on-polygon');
 const geoPointInPolygon = require('geo-point-in-polygon');
 require('dotenv').config();
 const token = process.env.TOKEN;
-// const token = require('../token.js');
 const fs = require('fs');
 const polyline = require('@mapbox/polyline');
 const counter = require("../counter.json")
