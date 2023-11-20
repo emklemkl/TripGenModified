@@ -55,22 +55,32 @@ const tripGenerator = {
      * @param {Number} cityid  - number of the json document containing
      * the city data
      */
-    setCoords: async function setCoords() {
+    setCoords: function setCoords() {
         const city = require(`../cities/${this.cityid}.json`);
 
         this.cityCoords = city.coords;
 
 
         for (const zone of city.forbidden) {
-            this.forbidden.push(zone.coordinates);
+            this.forbidden.push(zone.geometry.coordinates);
+        }
+
+        // Optional way to set distance by inserting
+        // coords into the city json file
+        if (city.start && city.min && city.max) {
+            this.minDistance = this.calcDistance(city.start, city.min);
+            this.maxDistance = this.calcDistance(city.start, city.max);
         }
     },
-
+    /**
+    * distance is square root of (delta-x squared + delta-y squared)
+    */
+    calcDistance: function calcDistance(startpoint, endpoint) {
+        return ((startpoint[0]-endpoint[0]) ** 2 + (startpoint[1]-endpoint[1]) ** 2) ** (1/2);
+    },
     withinDistance: function withinDistance(startpoint, endpoint) {
-        /**
-         * distance is square root of (delta-x squared + delta-y squared)
-         */
-        const distance = ((startpoint[0]-endpoint[0]) ** 2 + (startpoint[1]-endpoint[1]) ** 2) ** (1/2);
+        // const distance = ((startpoint[0]-endpoint[0]) ** 2 + (startpoint[1]-endpoint[1]) ** 2) ** (1/2);
+        const distance = this.calcDistance(startpoint, endpoint);
 
         return distance >= this.minDistance ** 2 && distance <= this.maxDistance ** 2;
     },

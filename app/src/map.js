@@ -26,12 +26,18 @@ export const addMap = async (counter) => {
     }).addTo(map);
 
     for (const zone of city.forbidden) {
-        geojsonFeature = {
-            type: "Feature",
-            properties: {},
-            geometry: zone
-        };
-        L.geoJSON(geojsonFeature, {
+        // geojsonFeature = {
+        //     type: "Feature",
+        //     properties: {},
+        //     geometry: zone
+        // };
+        // L.geoJSON(geojsonFeature, {
+        //     style: {
+        //     color: '#eb1c0d',
+        //     fillColor: '#eb1c0d',
+        //     fillOpacity: 0.3
+        // }
+        L.geoJSON(zone, {
             style: {
             color: '#eb1c0d',
             fillColor: '#eb1c0d',
