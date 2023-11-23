@@ -182,7 +182,7 @@ const tripGenerator = {
             }
             const bikeObj = {
                 city: this.cityid,
-                initialStart: startPoint,
+                initialStart: [],
                 trips: [],
             };
 
@@ -211,6 +211,7 @@ const tripGenerator = {
                     route++;
                     counter.user += 1;
                 } catch (error) {
+
                     console.error(error, "Bad response from OpenRouteService, exiting with status code 1")
                     process.exit(1);
                 }
@@ -224,10 +225,10 @@ const tripGenerator = {
                     }
                 }
             }
-
+            bikeObj.initialStart = bikeObj.trips[0].coords[0];
             // Save all trips for one bike to a new json file
             fs.writeFileSync(`./bike-routes/${bike}.json`, JSON.stringify(bikeObj, null, 4));
-            fs.appendFileSync("./bike-routes/bike.csv", `"${bike}","${JSON.stringify(initial)}"\r\n`);
+            fs.appendFileSync("./bike-routes/bike.csv", `"${bike}","${JSON.stringify(bikeObj.initialStart)}"\r\n`);
             counter.bike += 1;
             fs.writeFileSync(`./counter.json`, JSON.stringify(counter, null, 4));
         }
