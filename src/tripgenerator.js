@@ -49,14 +49,14 @@ const tripGenerator = {
      * Minimal distance between start and endpoint
      * of a trip "birdway"
      */
-    minDistance: 175,
+    minDistance: 200,
 
     /**
      * Maximum number of coordinates/points for the trip,
      * set to null if you do not want to have a limit.
      * If you set to a number the array with coords will be cut-off at the limit
      */
-    maxPoints: null,
+    maxPoints: 20,
 
     /**
      * Sets the coordinates for city area and the forbidden zones
@@ -210,6 +210,10 @@ const tripGenerator = {
                     let trip_decoded = this.reverseCoords(polyline.decode(trip.geometry));
                     if (this.maxPoints && trip_decoded.length > this.maxPoints) {
                         trip_decoded = trip_decoded.slice(0, this.maxPoints);
+                        trip.summary.distance = "";
+                        trip.summary.duration = "";
+
+                        console.log("trip ", route, " for bike ", bike, " cut off");
                     }
                     const userId = counter.user;
 
