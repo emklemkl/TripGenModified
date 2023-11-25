@@ -43,13 +43,13 @@ const tripGenerator = {
      * Maximal distance between start and endpoint
      * of a trip "birdway"
      */
-    maxDistance: 400,
+    maxDistance: 350,
 
     /**
      * Minimal distance between start and endpoint
      * of a trip "birdway"
      */
-    minDistance: 300,
+    minDistance: 100,
 
     /**
      * Sets the coordinates for city area and the forbidden zones
@@ -211,6 +211,7 @@ const tripGenerator = {
                         },
                         coords: trip_decoded
                     };
+                    console.log(trip.summary.duration);
 
 
                     bikeObj.trips.push(tripObj);
