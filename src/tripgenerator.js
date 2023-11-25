@@ -32,18 +32,18 @@ const tripGenerator = {
      * that will be generated for each bike. If number of routes per bike is higher than
      * 2 then endpoint of the last route will be start-point of first route
      */
-    routesPerBike: 3,
+    routesPerBike: 2,
 
     /**
      * Number of bikes to generate routes for
      */
-    bikes: 5,
+    bikes: 10,
 
     /**
      * Maximal distance between start and endpoint
      * of a trip "birdway"
      */
-    maxDistance: 600,
+    maxDistance: 400,
 
     /**
      * Minimal distance between start and endpoint
@@ -214,10 +214,8 @@ const tripGenerator = {
 
 
                     bikeObj.trips.push(tripObj);
-        
-                    // Append one trip to the general csv file
-    
-                    startPoint = endPoint;
+
+                    startPoint = trip_decoded[trip_decoded.length - 1];
                     route++;
                     counter.user += 1;
                 } catch (error) {
@@ -230,7 +228,7 @@ const tripGenerator = {
                 if (route === this.routesPerBike - 1 && this.sameStartEnd && this.routesPerBike > 2) {
                     endPoint = initial;
                 } else {
-                    while (endPoint === startPoint) {
+                    while (endPoint === startPoint || !this.withinDistance(startPoint, endPoint)) {
                         endPoint = this.getPoint(startPoint);
                     }
                 }

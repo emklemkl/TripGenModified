@@ -1,8 +1,14 @@
+/**
+ * This script is to transform route data
+ * into an csv file that can be analyzed for example inexcel, see example excel file.
+ * Note! This script does not run automatically, run this script after you have generated the json bike files
+ */
+
 const fs = require('fs');
 const counter = require("../counter.json");
 const geoTools = require('geo-tools');
 
-// fs.writeFileSync("./stats.csv", `"bike","route","length_meter", "length_birdway","duration_sec", "duration_time"\r\n`);
+fs.writeFileSync("./stats.csv", `"bike","route","length_meter", "length_birdway","duration_sec", "duration_time"\r\n`);
 
 for (let i = 1; i < counter.bike; i++) {
     const bike = require(`./${i}.json`);
