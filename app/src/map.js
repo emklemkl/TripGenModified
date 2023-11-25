@@ -76,13 +76,9 @@ export const addMap = async (counter) => {
             {"type": "checkbox"});
             const content2 = createElement("span.no-wrap",
             {},
-            {innerText: `${bike.trips[j].summary.distance} meter`});
-            const content3 = createElement("span.no-wrap",
-            {},
-            {innerText: `${Math.floor(bike.trips[j].summary.duration/60)} min ${Math.round(bike.trips[j].summary.duration % 60)} sec`});
+            {innerText: `${bike.trips[j].coords.length} points`});
             routeItem.appendChild(content);
             routeItem.appendChild(content2);
-            routeItem.appendChild(content3);
             routeItem.appendChild(checkBox);
             checkBox.addEventListener("change",() => {
                 if (checkBox.checked == true) {
