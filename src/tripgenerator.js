@@ -56,7 +56,7 @@ const tripGenerator = {
      * set to null if you do not want to have a limit.
      * If you set to a number the array with coords will be cut-off at the limit
      */
-    maxPoints: 10,
+    maxPoints: 15,
 
     /**
      * Sets the coordinates for city area and the forbidden zones
