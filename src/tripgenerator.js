@@ -43,13 +43,20 @@ const tripGenerator = {
      * Maximal distance between start and endpoint
      * of a trip "birdway"
      */
-    maxDistance: 350,
+    maxDistance: 300,
 
     /**
      * Minimal distance between start and endpoint
      * of a trip "birdway"
      */
-    minDistance: 100,
+    minDistance: 175,
+
+    /**
+     * Maximum number of coordinates/points for the trip,
+     * set to null if you do not want to have a limit.
+     * If you set to a number the array with coords will be cut-off at the limit
+     */
+    maxPoints: null,
 
     /**
      * Sets the coordinates for city area and the forbidden zones
@@ -200,7 +207,10 @@ const tripGenerator = {
             while (route<=this.routesPerBike) {
                 try {
                     const trip = await this.getTripCoords(startPoint, endPoint);
-                    const trip_decoded = this.reverseCoords(polyline.decode(trip.geometry));
+                    let trip_decoded = this.reverseCoords(polyline.decode(trip.geometry));
+                    if (this.maxPoints && trip_decoded.length > this.maxPoints) {
+                        trip_decoded = trip_decoded.slice(0, this.maxPoints);
+                    }
                     const userId = counter.user;
 
                     tripObj = {
