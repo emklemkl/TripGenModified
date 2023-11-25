@@ -6,8 +6,10 @@ const fs = require('fs');
 const polyline = require('@mapbox/polyline');
 const counter = require("../counter.json")
 const tokenGenerator = require("./tokengenerator.js");
+const geoTools = require('geo-tools');
 
 const tripGenerator = {
+    city: "",
     cityid: 1,
     /**
      * Coordinates of the city as polygon
@@ -41,13 +43,13 @@ const tripGenerator = {
      * Maximal distance between start and endpoint
      * of a trip "birdway"
      */
-    maxDistance: 0.0549976308604803,
+    maxDistance: 600,
 
     /**
      * Minimal distance between start and endpoint
      * of a trip "birdway"
      */
-    minDistance: 0.0192575756257603,
+    minDistance: 300,
 
     /**
      * Sets the coordinates for city area and the forbidden zones
@@ -56,6 +58,7 @@ const tripGenerator = {
      */
     setCoords: function setCoords() {
         const city = require(`../cities/${this.cityid}.json`);
+        this.city = city.id;
 
         this.cityCoords = city.coords;
 
@@ -71,17 +74,19 @@ const tripGenerator = {
             this.maxDistance = this.calcDistance(city.start, city.max);
         }
     },
-    /**
-    * distance is square root of (delta-x squared + delta-y squared)
-    */
-    calcDistance: function calcDistance(startpoint, endpoint) {
-        return ((startpoint[0]-endpoint[0]) ** 2 + (startpoint[1]-endpoint[1]) ** 2) ** (1/2);
-    },
     withinDistance: function withinDistance(startpoint, endpoint) {
-        // const distance = ((startpoint[0]-endpoint[0]) ** 2 + (startpoint[1]-endpoint[1]) ** 2) ** (1/2);
-        const distance = this.calcDistance(startpoint, endpoint);
+        const from = {
+            lng: startpoint[0],
+            lat: startpoint[1]
+        }
+        const to = {
+            lng: endpoint[0],
+            lat: endpoint[1]
+        }
 
-        return distance >= this.minDistance ** 2 && distance <= this.maxDistance ** 2;
+        const meters = toMeters(distance(from, to));
+
+        return meters >= this.minDistance && meters <= this.maxDistance;
     },
 
     /**
@@ -154,7 +159,11 @@ const tripGenerator = {
         });
         const resJson = await res.json();
 
-        return resJson.routes[0].geometry;
+        // return resJson.routes[0].geometry;
+        return {
+            summary: resJson.routes[0].summary,
+            geometry: resJson.routes[0].geometry
+        }
     },
 
     /**
@@ -191,10 +200,11 @@ const tripGenerator = {
             while (route<=this.routesPerBike) {
                 try {
                     const trip = await this.getTripCoords(startPoint, endPoint);
-                    const trip_decoded = this.reverseCoords(polyline.decode(trip));
+                    const trip_decoded = this.reverseCoords(polyline.decode(trip.geometry));
                     const userId = counter.user;
 
                     tripObj = {
+                        summary: trip.summary,
                         user: {
                             id: userId,
                             token: tokenGenerator.getOne(userId)
@@ -228,7 +238,7 @@ const tripGenerator = {
             bikeObj.initialStart = bikeObj.trips[0].coords[0];
             // Save all trips for one bike to a new json file
             fs.writeFileSync(`./bike-routes/${bike}.json`, JSON.stringify(bikeObj, null, 4));
-            fs.appendFileSync("./bike-routes/bike.csv", `"${bike}","${JSON.stringify(bikeObj.initialStart)}"\r\n`);
+            fs.appendFileSync("./bike-routes/bike.csv", `"${bike}","${this.city}","${JSON.stringify(bikeObj.initialStart)}"\r\n`);
             counter.bike += 1;
             fs.writeFileSync(`./counter.json`, JSON.stringify(counter, null, 4));
         }

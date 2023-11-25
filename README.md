@@ -39,8 +39,8 @@ The following attributes are variable and can be set by yourself in the src/trip
 - cityid: the id of the document with geometrydata you want to use for city zones and forbidden zones within the city
 - number of bikes to generate routes for
 - number of routes to generate per bike
-- minimum distance between start point and end point of each route (birdway)
-- maximum distance between start point and end point of each route (birdway)
+- minimum distance between start point and end point of each route in meters (birdway)
+- maximum distance between start point and end point of each route in meters (birdway)
 - if the end point of the last route should be the same as start point of first route (for each bike, comes in handy if you want to loop through same sequence several times), default is 'false'
 
 Values for cityid and number of bikes can also be passed via commandline in the following order ```node main.js <cityid> <bikes>```, where ```cityid``` it the id of the document with geometrydata you want to use for city zones and forbidden zones within the city, and  ```bikes``` is the number of bikes you want to generate routes for. 

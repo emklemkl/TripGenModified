@@ -23,7 +23,7 @@ body {
 
 .bike-container {
     display: flex;
-    width: 30vw;
+    width: clamp(600px,30vw,700px);
     height: 100vh;
     overflow: scroll;
     padding: 1.5rem;
@@ -58,4 +58,8 @@ li.bike-item {
 
 li.route-item {
     font-weight: 400;
+}
+
+.no-wrap {
+    white-space: nowrap;
 }

@@ -10,9 +10,10 @@
   "license": "ISC",
   "dependencies": {
     "@mapbox/polyline": "^1.2.1",
-    "geo-point-in-polygon": "^1.0.0",
-    "random-points-on-polygon": "^0.0.4",
     "dotenv": "^16.3.1",
-    "jsonwebtoken": "^9.0.2"
+    "geo-point-in-polygon": "^1.0.0",
+    "geo-tools": "^0.1.2",
+    "jsonwebtoken": "^9.0.2",
+    "random-points-on-polygon": "^0.0.4"
   }
 }

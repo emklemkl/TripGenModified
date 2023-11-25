@@ -29,7 +29,7 @@ function main {
                 done
                 uncomment this i
                 echo "Generating new csv files..."
-                printf "\"bike_id\",\"start_point\"\\r\\n" > ../bike-routes/bike.csv
+                printf "\"bike_id\",\"city_id\",\"start_point\"\\r\\n" > ../bike-routes/bike.csv
                 echo "Resetting counter..."
                 node './reset.js'
                 echo "Done!"

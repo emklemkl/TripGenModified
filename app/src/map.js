@@ -2,7 +2,6 @@
 
 
 import { createElement } from './utils.js';
-const cityid = 1;
 
 export const addMap = async (counter) => {
     const bikeDiv = document.getElementById("bike-container");
@@ -15,55 +14,40 @@ export const addMap = async (counter) => {
         maxZoom: 19,
         attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
     }).addTo(map);
-    const cityFile = await fetch(`../../cities/${cityid}.json`);
-    const city = await cityFile.json();
-    let geojsonFeature = city.coords;
-    L.geoJSON(geojsonFeature, {
-        style: {
-            color: '#eb1c0d',
-            fillOpacity: 0
-        }
-    }).addTo(map);
-
-    for (const zone of city.forbidden) {
-        // geojsonFeature = {
-        //     type: "Feature",
-        //     properties: {},
-        //     geometry: zone
-        // };
-        // L.geoJSON(geojsonFeature, {
-        //     style: {
-        //     color: '#eb1c0d',
-        //     fillColor: '#eb1c0d',
-        //     fillOpacity: 0.3
-        // }
-        L.geoJSON(zone, {
+    for (const cityid of [1, 2, 3]) {
+        const cityFile = await fetch(`../../cities/${cityid}.json`);
+        const city = await cityFile.json();
+        let geojsonFeature = city.coords;
+        L.geoJSON(geojsonFeature, {
             style: {
-            color: '#eb1c0d',
-            fillColor: '#eb1c0d',
-            fillOpacity: 0.3
-        }
+                color: '#eb1c0d',
+                fillOpacity: 0
+            }
         }).addTo(map);
+    
+        for (const zone of city.forbidden) {
+            if (zone.properties.role === "forbidden") {
+                L.geoJSON(zone, {
+                    style: {
+                    color: '#eb1c0d',
+                    fillColor: '#eb1c0d',
+                    fillOpacity: 0.3
+                }
+                }).addTo(map);
+            }
+
+        }
     }
-
-
 
     for (let i = 1; i < counter; i++) {
         const file = await fetch(`../../bike-routes/${i}.json`);
         const bike = await file.json();
-        const bikeItem = createElement("li.bike-item",
+        const bikeItem = createElement("li.bike-item.no-wrap",
         {},
         { innerText: `Bike ${i}`});
         bikeList.appendChild(bikeItem);
         const routeList = createElement("ul.route-list");
         bikeItem.appendChild(routeList);
-
-        // const icon = L.icon({
-        //     iconUrl:      `./app/src/marker-icon.png`,
-        //     iconSize:     [10, 10],
-        //     iconAnchor:   [12, 12],
-        //     popupAnchor:  [9, -3]
-        // });
 
         for (let j = 0; j<bike.trips.length; j++) {
             const bikeCoords = [];
@@ -77,24 +61,28 @@ export const addMap = async (counter) => {
                     }
                 }
                 const marker = L.geoJSON(
-                    geoJsonPoint).bindPopup(`Bike ${i}, route ${j+1}, user: ${bike.trips[j].user.id}`);
+                    geoJsonPoint).bindPopup(`Bike ${i}, route ${j+1}, user: ${bike.trips[j].user.id}, ${bike.trips[j].summary.distance} meter, ${Math.floor(bike.trips[j].summary.duration/60)} min ${Math.round(bike.trips[j].summary.duration % 60)} sec`);
                 bikeCoords.push(marker);
-                // const marker = L.marker(
-                //     coord.reverse(),
-                //     {icon: icon}).bindPopup(`Bike ${i}, route ${j}`);
-                // bikeCoords.push(marker);
             }
             const bikeRoute = L.layerGroup(bikeCoords);
 
 
             const routeItem = createElement("li.route-item");
             routeList.appendChild(routeItem);
-            const content = createElement("span",
+            const content = createElement("span.no-wrap",
             {},
-            {innerText: `Route ${j+1}`});
+            {innerText: `Route ${j+1}: `});
             const checkBox = createElement("input",
             {"type": "checkbox"});
+            const content2 = createElement("span.no-wrap",
+            {},
+            {innerText: `${bike.trips[j].summary.distance} meter`});
+            const content3 = createElement("span.no-wrap",
+            {},
+            {innerText: `${Math.floor(bike.trips[j].summary.duration/60)} min ${Math.round(bike.trips[j].summary.duration % 60)} sec`});
             routeItem.appendChild(content);
+            routeItem.appendChild(content2);
+            routeItem.appendChild(content3);
             routeItem.appendChild(checkBox);
             checkBox.addEventListener("change",() => {
                 if (checkBox.checked == true) {
