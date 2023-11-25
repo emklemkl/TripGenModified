@@ -1,14 +1,11 @@
 {
     "city": 1,
-    "initialStart": [
-        18.05595,
-        59.32806
-    ],
+    "initialStart": [18.06313,59.31489],
     "trips": [
         {
             "summary": {
-                "distance": 6.3,
-                "duration": 1
+                "distance": "",
+                "duration": ""
             },
             "user": {
                 "id": 315,
@@ -47,7 +44,8 @@
         },
         {
             "summary": {
-                "distance": 0.2
+                "distance": "",
+                "duration": ""
             },
             "user": {
                 "id": 316,
