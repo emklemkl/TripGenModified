@@ -45,8 +45,7 @@ The following attributes are variable and can be set by yourself in the src/trip
 
 Values for cityid and number of bikes can also be passed via commandline in the following order ```node main.js <cityid> <bikes>```, where ```cityid``` it the id of the document with geometrydata you want to use for city zones and forbidden zones within the city, and  ```bikes``` is the number of bikes you want to generate routes for. 
 
-
-In the directory reset/ you can find a bash script that removes all previously generated routes and resets counters for userid and bikeid to zero. When starting the script with ```./reset.bash``` you will be prompted to confirm if you really wish to reset. You can confirm with any of Y | y | Yes | yes
+The bike-routes folder is prefilled with dummy-data. In the directory reset/ you can find a bash script that removes all previously generated routes and resets counters for userid and bikeid to zero. When starting the script with ```./reset.bash``` you will be prompted to confirm if you really wish to reset. You can confirm with any of Y | y | Yes | yes
 
 # Good to know
 
