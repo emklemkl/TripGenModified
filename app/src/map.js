@@ -24,7 +24,8 @@ export const addMap = async (counter) => {
                 fillOpacity: 0
             }
         }).addTo(map);
-    
+
+        let zoneNr = 1
         for (const zone of city.forbidden) {
             if (zone.properties.role === "forbidden") {
                 L.geoJSON(zone, {
@@ -33,9 +34,9 @@ export const addMap = async (counter) => {
                     fillColor: '#eb1c0d',
                     fillOpacity: 0.3
                 }
-                }).addTo(map);
+                }).bindPopup(`${zoneNr}`).addTo(map);
             }
-
+            zoneNr++
         }
     }
 
