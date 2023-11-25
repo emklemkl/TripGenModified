@@ -10,7 +10,7 @@ const geoTools = require('geo-tools');
 
 const tripGenerator = {
     city: "",
-    cityid: 2,
+    cityid: 3,
     /**
      * Coordinates of the city as polygon
      * Note! Loaded from file!
