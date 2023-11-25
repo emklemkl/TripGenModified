@@ -1,3 +1,8 @@
+/**
+ * This is a script to convert your json city files
+ * into data for csv that easily can be loaded into an SQL database
+ */
+
 const fs = require('fs');
 const zoneId = {
     park: 1,
