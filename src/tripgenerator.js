@@ -208,12 +208,13 @@ const tripGenerator = {
                 try {
                     const trip = await this.getTripCoords(startPoint, endPoint);
                     let trip_decoded = this.reverseCoords(polyline.decode(trip.geometry));
+                    console.log(trip.summary.duration);
                     if (this.maxPoints && trip_decoded.length > this.maxPoints) {
                         trip_decoded = trip_decoded.slice(0, this.maxPoints);
                         trip.summary.distance = "";
                         trip.summary.duration = "";
 
-                        console.log("trip ", route, " for bike ", bike, " cut off");
+                        // console.info("trip ", route, " for bike ", bike, " cut off");
                     }
                     const userId = counter.user;
 
@@ -225,7 +226,7 @@ const tripGenerator = {
                         },
                         coords: trip_decoded
                     };
-                    console.log(trip.summary.duration);
+
 
 
                     bikeObj.trips.push(tripObj);
