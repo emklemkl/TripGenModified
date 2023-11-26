@@ -208,7 +208,7 @@ const tripGenerator = {
                 try {
                     const trip = await this.getTripCoords(startPoint, endPoint);
                     let trip_decoded = this.reverseCoords(polyline.decode(trip.geometry));
-                    console.log(trip.summary.duration);
+
                     if (this.maxPoints && trip_decoded.length > this.maxPoints) {
                         trip_decoded = trip_decoded.slice(0, this.maxPoints);
                         trip.summary.distance = "";
@@ -252,6 +252,7 @@ const tripGenerator = {
             bikeObj.initialStart = bikeObj.trips[0].coords[0];
             // Save all trips for one bike to a new json file
             fs.writeFileSync(`./bike-routes/${bike}.json`, JSON.stringify(bikeObj, null, 4));
+            console.log(`./bike-routes/${bike}.json done!`);
             fs.appendFileSync("./bike-routes/bike.csv", `"${bike}","${this.city}","${JSON.stringify(bikeObj.initialStart)}"\r\n`);
             counter.bike += 1;
             fs.writeFileSync(`./counter.json`, JSON.stringify(counter, null, 4));
