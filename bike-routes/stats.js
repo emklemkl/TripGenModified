@@ -12,7 +12,7 @@ fs.writeFileSync("./stats.csv", `"bike","route","length_meter", "length_birdway"
 
 for (let i = 1; i < counter.bike; i++) {
     const bike = require(`./${i}.json`);
-
+    const city = bike.city;
     for (let j = 0; j<bike.trips.length; j++) {
         const from = {
             lng: bike.trips[j].coords[0][0],

@@ -11,23 +11,19 @@ const zoneId = {
 }
 const speedLimit = 20;
 
+const cities = [1]
+
 
 fs.writeFileSync("./city.csv", `'id','name', 'speed_limit', 'geometry'\r\n`);
 fs.writeFileSync("./zone_loc.csv", `'zone_id','city_id', 'date_from', 'geometry'\r\n`);
 
-for (const cityid of [1, 2, 3]) {
+for (const cityid of cities) {
     const city = require(`./${cityid}.json`);
     fs.appendFileSync("./city.csv", `'${city.id}','${city.name}','${speedLimit}','${JSON.stringify(city.coords.geometry)}'\r\n`);
     for (const zone of city.forbidden) {
         if (zone.properties.role === "forbidden") {
             fs.appendFileSync("./zone_loc.csv", `'${zoneId.forbidden}','${city.id}','2023-10-01','${JSON.stringify(zone.geometry)}'\r\n`);
         }
-    }
-    for (const zone of city.park_zones) {
-        fs.appendFileSync("./zone_loc.csv", `'${zoneId.park}','${city.id}','2023-10-01','${JSON.stringify(zone.geometry)}'\r\n`);
-    }
-    for (const zone of city.charge_zones) {
-        fs.appendFileSync("./zone_loc.csv", `'${zoneId.charge}','${city.id}','2023-10-01','${JSON.stringify(zone.geometry)}'\r\n`);
     }
 }
 

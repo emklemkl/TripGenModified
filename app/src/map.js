@@ -52,6 +52,9 @@ export const addMap = async (counter) => {
 
         for (let j = 0; j<bike.trips.length; j++) {
             const bikeCoords = [];
+
+            // use this one if you only want to include start and end point
+            // for (const coord of [bike.trips[j].coords[0], bike.trips[j].coords[bike.trips[j].coords.length - 1]]) {
             for (const coord of bike.trips[j].coords) {
                 const geoJsonPoint = {
                     type: "Feature",
@@ -61,8 +64,9 @@ export const addMap = async (counter) => {
                         "coordinates": coord
                     }
                 }
+
                 const marker = L.geoJSON(
-                    geoJsonPoint).bindPopup(`Bike ${i}, route ${j+1}, user: ${bike.trips[j].user.id}, ${bike.trips[j].summary.distance} meter, ${Math.floor(bike.trips[j].summary.duration/60)} min ${Math.round(bike.trips[j].summary.duration % 60)} sec`);
+                    geoJsonPoint).bindPopup(`Bike ${i}, route ${j+1} `, JSON.stringify(coord));
                 bikeCoords.push(marker);
             }
             const bikeRoute = L.layerGroup(bikeCoords);

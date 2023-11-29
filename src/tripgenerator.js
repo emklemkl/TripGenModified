@@ -10,7 +10,7 @@ const geoTools = require('geo-tools');
 
 const tripGenerator = {
     city: "",
-    cityid: 3,
+    cityid: 1,
     /**
      * Coordinates of the city as polygon
      * Note! Loaded from file!
@@ -37,7 +37,7 @@ const tripGenerator = {
     /**
      * Number of bikes to generate routes for
      */
-    bikes: 10,
+    bikes: 5,
 
     /**
      * Maximal distance between start and endpoint
@@ -54,9 +54,10 @@ const tripGenerator = {
     /**
      * Maximum number of coordinates/points for the trip,
      * set to null if you do not want to have a limit.
-     * If you set to a number the array with coords will be cut-off at the limit
+     * Set to an integer if you want the agenerated array
+     * with coords to be cut-off at the limit
      */
-    maxPoints: 20,
+    maxPoints: null,
 
     /**
      * Sets the coordinates for city area and the forbidden zones
@@ -211,10 +212,7 @@ const tripGenerator = {
 
                     if (this.maxPoints && trip_decoded.length > this.maxPoints) {
                         trip_decoded = trip_decoded.slice(0, this.maxPoints);
-                        trip.summary.distance = "";
-                        trip.summary.duration = "";
-
-                        // console.info("trip ", route, " for bike ", bike, " cut off");
+                        delete trip.summary;
                     }
                     const userId = counter.user;
 
