@@ -1,0 +1,73 @@
+{
+    "city": 1,
+    "initialStart": [
+        18.06324,
+        59.34104
+    ],
+    "trips": [
+        {
+            "summary": {
+                "distance": 298.5,
+                "duration": 69.4
+            },
+            "user": {
+                "id": 431,
+                "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NDMxLCJyb2xlIjoidXNlciIsImlhdCI6MTcwMjkxMzg1NiwiZXhwIjoxNzM0NDQ5ODU2fQ.kUl0eSrLSfAI6nwi4QNKPDHivp3kJc8CcZWCi8Rv6SI"
+            },
+            "coords": [
+                [
+                    18.06324,
+                    59.34104
+                ],
+                [
+                    18.06287,
+                    59.34144
+                ],
+                [
+                    18.06299,
+                    59.34147
+                ],
+                [
+                    18.06292,
+                    59.34154
+                ],
+                [
+                    18.06283,
+                    59.34162
+                ],
+                [
+                    18.06207,
+                    59.34242
+                ],
+                [
+                    18.06199,
+                    59.3425
+                ],
+                [
+                    18.06191,
+                    59.34257
+                ],
+                [
+                    18.06132,
+                    59.34317
+                ],
+                [
+                    18.06127,
+                    59.34322
+                ],
+                [
+                    18.0612,
+                    59.34329
+                ],
+                [
+                    18.06132,
+                    59.34332
+                ],
+                [
+                    18.06126,
+                    59.34339
+                ]
+            ]
+        }
+    ]
+}

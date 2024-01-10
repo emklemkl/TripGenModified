@@ -1,7 +1,7 @@
 {
   "name": "testapp",
   "version": "1.0.0",
-  "description": "",
+  "description": "This program is a combination of https://github.com/JuliaLind/TripGenerator and https://github.com/JuliaLind/TokenGenerator.",
   "main": "main.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -10,10 +10,22 @@
   "license": "ISC",
   "dependencies": {
     "@mapbox/polyline": "^1.2.1",
+    "axios": "^1.6.2",
+    "crypto": "^1.0.1",
     "dotenv": "^16.3.1",
     "geo-point-in-polygon": "^1.0.0",
     "geo-tools": "^0.1.2",
     "jsonwebtoken": "^9.0.2",
+    "node-fetch": "^2.7.0",
     "random-points-on-polygon": "^0.0.4"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JuliaLind/TripGenerator-extended.git"
+  },
+  "keywords": [],
+  "bugs": {
+    "url": "https://github.com/JuliaLind/TripGenerator-extended/issues"
+  },
+  "homepage": "https://github.com/JuliaLind/TripGenerator-extended#readme"
 }

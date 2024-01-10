@@ -1,6 +1,10 @@
 const tripGenerator = require("./src/tripgenerator.js");
+// const crypto = require('crypto');
 
+// // Generate a random JWT secret (32 bytes)
+// const jwtSecret = crypto.randomBytes(32).toString('hex');
 
+// console.log('JWT Secret:', jwtSecret);
 (async function () {
     "use strict";
     /**

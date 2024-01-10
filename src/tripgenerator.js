@@ -7,10 +7,10 @@ const polyline = require('@mapbox/polyline');
 const counter = require("../counter.json")
 const tokenGenerator = require("./tokengenerator.js");
 const geoTools = require('geo-tools');
-
+const fetch = require('node-fetch');
 const tripGenerator = {
     city: "",
-    cityid: 1,
+    cityid: 2,
     /**
      * Coordinates of the city as polygon
      * Note! Loaded from file!
@@ -32,12 +32,12 @@ const tripGenerator = {
      * that will be generated for each bike. If number of routes per bike is higher than
      * 2 then endpoint of the last route will be start-point of first route
      */
-    routesPerBike: 2,
+    routesPerBike: 1,
 
     /**
      * Number of bikes to generate routes for
      */
-    bikes: 5,
+    bikes: 2,
 
     /**
      * Maximal distance between start and endpoint
@@ -209,7 +209,8 @@ const tripGenerator = {
                 try {
                     const trip = await this.getTripCoords(startPoint, endPoint);
                     let trip_decoded = this.reverseCoords(polyline.decode(trip.geometry));
-
+                    // console.log("🚀 ~ file: tripgenerator.js:212 ~ generateMany ~ trip_decoded:", trip_decoded)
+                    
                     if (this.maxPoints && trip_decoded.length > this.maxPoints) {
                         trip_decoded = trip_decoded.slice(0, this.maxPoints);
                         delete trip.summary;
